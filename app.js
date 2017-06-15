@@ -9,8 +9,10 @@ const cors = require('koa-cors');
 const bodyParser = require('koa-bodyparser')
 const routers = require('./routes/api/index')
 
-/*const index = require('./routes/index')
-const users = require('./routes/users')*/
+//const chat = require('./socketio/index')
+
+const index = require('./routes/index')
+const users = require('./routes/users')
 // error handler
 onerror(app)
 
@@ -25,7 +27,7 @@ app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+  extension: 'html'
 }))
 
 // logger
@@ -37,11 +39,19 @@ app.use(async (ctx, next) => {
 })
 
 // routes
-// app.use(index.routes(), index.allowedMethods())
-// app.use(users.routes(), users.allowedMethods())
+ app.use(index.routes(), index.allowedMethods())
+ app.use(users.routes(), users.allowedMethods())
 
 // 初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods())
 
+
+//var server = require('http').Server(app.callback());
+
+//chat.init(server);
+
+var server = require('http').createServer(app.callback());
+var io = require('socket.io')(server);
+io.on('connection', function(){  });
 
 module.exports = app

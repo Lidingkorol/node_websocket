@@ -1,14 +1,13 @@
-
 <!doctype html>
 <html>
   <head>
-	<title>Socket.IO chat</title>
+    <title>Socket.IO chat</title>
     <!--<link rel="stylesheet" href="style.css">-->
   </head>
   <body>
     <div id="container">
-    	<div class="asd">#{title}</div>
         <div>
+        	<div class="asd">#{title}</div>
           <div>Room Name: <span id="roomName">Lobby</span></div>
         </div>
         <div id="wrapper1">
@@ -41,7 +40,7 @@
     <script>
         // socket object
         // socket 对象
-        var socket = io();
+        var socket = io('localhost:3001');
         // display message in html
         // 在浏览器里显示信息
         function showMsg(msg) {
