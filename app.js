@@ -27,7 +27,7 @@ app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'html'
+  extension: 'ejs'
 }))
 
 // logger
@@ -46,12 +46,6 @@ app.use(async (ctx, next) => {
 app.use(routers.routes()).use(routers.allowedMethods())
 
 
-//var server = require('http').Server(app.callback());
 
-//chat.init(server);
-
-var server = require('http').createServer(app.callback());
-var io = require('socket.io')(server);
-io.on('connection', function(){  });
 
 module.exports = app
