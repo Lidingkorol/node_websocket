@@ -1,7 +1,9 @@
 const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
-	
+	await ctx.render('socket', {
+    	title: 'Hello Koa 2!'
+  	})
 })
 
 

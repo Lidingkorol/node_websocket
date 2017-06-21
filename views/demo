@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  	<head>
+    	<title>Socket.IO chat</title>
+    	<!--<link rel="stylesheet" href="style.css">-->
+  	</head>
+  	<body>
+	    <div id="container">
+	        <div>
+	          <div>Room Name: <span id="roomName">Lobby</span></div>
+	        </div>
+	        <div id="wrapper1">
+	            <ul id="messages"></ul>
+	        </div>
+	        <div id="wrapper2">
+	            <div>Command Instruction</div>
+	            <ul id="command">
+	                <li>输入 /join xxxx 加入房间</li>
+	                <li>输入 /name xxxx 更改姓名</li>
+	            </ul>
+	            <br>
+	            <div>Room List</div>
+	            <ul id="room">
+	                <li id="Lobby" class="roomBtn">Lobby</li>
+	            </ul>
+	        </div>
+	        <div>
+	            <form action="">
+	              <input id="m" autocomplete="off" />
+	              <button>Send</button>
+	            </form>
+	        </div>
+	    </div>
+
+	    <!--socket.io.js-->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	    <!--jQuery-->
+	    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	    <script>
+	    	var socket = io.connect('localhost:3000')
+	    	socket.on('connect', function() {
+			  output('连接成功')
+			})
+	    </script>
+	</body>
+</html>

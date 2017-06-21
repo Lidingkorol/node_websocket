@@ -9,6 +9,10 @@ const cors = require('koa-cors');
 const bodyParser = require('koa-bodyparser')
 const routers = require('./routes/api/index')
 
+const chat = require('./socketio/socket')
+
+const server = require('http').createServer(app.callback());
+
 //const chat = require('./socketio/index')
 
 const index = require('./routes/index')
@@ -26,9 +30,10 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
-app.use(views(__dirname + '/views', {
-  extension: 'ejs'
-}))
+app.use(views(__dirname + '/views', { 
+		map: {html: 'nunjucks' }
+	}
+))
 
 // logger
 app.use(async (ctx, next) => {
@@ -45,6 +50,10 @@ app.use(async (ctx, next) => {
 // 初始化路由中间件
 app.use(routers.routes()).use(routers.allowedMethods())
 
+
+chat.init(server);
+
+server.listen(3000);
 
 
 
