@@ -12,7 +12,7 @@ chat.init = function(server){
 
 chat.run = function(){
 	var that = this;
-	this.io.on('connection',function(){
+	this.io.on('connection',function(socket){
 		
 	})
 	
