@@ -6,6 +6,13 @@
 	</head>
 	<body>
 		<p>{{title}}</p>
+		<form id="form" onsubmit="sendMsg(); return false;">
+			<textarea></textarea>
+			<button>提交</button>
+		</form>
+		<div class="chatBox" id="chatBox">
+			
+		</div>
 	</body>
 	<!--socket.io.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
@@ -17,9 +24,21 @@
         var socket = io('localhost:3000');
         
         
-        socket.on('sendMsg',function(){
+        socket.on('talkMsg',function(msg){
         	
+        	var html =   '<li>'
+        				+	'<p>'+msg+'<p>'
+        				+'</li>';
+        	
+        	$('#chatBox').append(html)
+        	console.log(msg)
         })
+        
+        function sendMsg() {
+        	var msg = $('#form textarea').val();
+        	socket.emit('Msg',msg);
+        }
+        
        	
     </script>
 </html>
