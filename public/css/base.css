@@ -1,0 +1,203 @@
+
+/*初始化*/
+body, nav, dl, dt, dd, p, h1, h2, h3, h4, ul, ol, li, input, button, textarea, footer {
+    margin: 0;
+    padding: 0
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%
+}
+
+form {
+    display: block
+}
+
+ul, ol {
+    list-style: none
+}
+
+header, footer, article, section, nav, menu, hgroup {
+    display: block;
+    clear: all;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #db3652;
+}
+
+a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+a, a:focus, a:hover, a:active {
+    outline: 0
+}
+
+img {
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+    vertical-align: middle;
+    outline: none;
+}
+
+textarea {
+    resize: none
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+    -moz-appearance: button
+}
+
+input:focus:-moz-placeholder, input:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+input {
+    -webkit-appearance: none;
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+html, body {
+    font-size: 15px;
+    line-height: 25px;
+    color: #000;
+    font-family: -apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    width: 100%;
+    max-width: 960px;
+    min-width: 320px;
+    margin: 0 auto;
+    background: #ebebeb;
+    -webkit-touch-callout: none; /* 禁用长触弹出的下载图片菜单 */
+    -webkit-user-select: none; /* 禁用长触选择文字等功能 */
+}
+
+
+
+
+.container {
+	background-color:#dedede;
+	height: 100%;
+}
+
+.chatBox .msgItem {
+	padding: 10px 15px;
+}
+
+
+
+.chatBox .msgItem .sysMsg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+}
+
+
+.chatBox .msgItem .sysMsg span {
+	text-align: center;
+	color: #fff;
+	background-color:#c9c5c5;
+	border-radius: 5px;
+	line-height: 20px;
+	height: 20px;
+	padding: 0 10px;
+}
+
+.msgItem {
+	display: flex;
+	align-items:flex-start;
+}
+.msgItem .contentBox {
+	position: relative;
+}
+
+.msgItem .msgRight {
+	display: flex;
+	flex: 1;
+	flex-direction: row-reverse;
+}
+
+.msgItem .msgRight img {
+	width: 50px;
+    height: 50px;
+	
+}
+.msgRight .contentBox .item_hd {
+	width: 0;
+    height: 0;
+    border-width: 0 5px 10px;
+    border-style: solid;
+    border-color: transparent transparent #44ce2b;
+    position: absolute;
+    transform: rotate(90deg);
+    right: 6px;
+    top: 14px;
+}
+.msgRight .contentBox .item_bd {
+	background-color: #44ce2b;
+    color: #000;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin:0 15px;
+    margin-top: 5px;
+}
+
+
+.msgItem .msgLeft {
+	display: flex;
+	flex: 1;
+	
+}
+.msgItem .msgLeft {
+	display: flex;
+	
+}
+
+.msgItem .msgLeft img {
+	width: 50px;
+    height: 50px;
+	
+}
+.msgLeft .contentBox .item_hd {
+	width: 0;
+    height: 0;
+    border-width: 0 5px 10px;
+    border-style: solid;
+    border-color: transparent transparent #44ce2b;
+    position: absolute;
+    transform: rotate(-90deg);
+    left: 6px;
+    top: 14px;
+}
+.msgLeft .contentBox .item_bd {
+	background-color: #44ce2b;
+    color: #000;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 0 15px;
+    margin-top: 5px;
+}
