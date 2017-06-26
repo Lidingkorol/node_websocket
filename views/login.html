@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="/css/base.css" rel="stylesheet" type="text/css">
+</head>
+    <div class="container">
+
+    </div>
+<body>
+
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <!--jQuery-->
+
+    <script src="https://cdn.bootcss.com/layer/3.0.1/layer.js"></script>
+    <script>
+        function openPage() {
+            layer.prompt({
+                title:"请输入聊天昵称！",
+                formtype:0,
+                value:"",
+                closeBtn:false,
+                btn:['确定']
+            },function(value,success){
+
+                layer.close(success)
+
+                $.ajax({
+                    type: "GET",
+                    url:'http://localhost:3001/api/getUser',
+                    data: {username:value},
+                    success:function(data){
+                        location.href="http://localhost:3001/chat"
+                    }
+                })
+
+            })
+        }
+        openPage()
+    </script>
+</body>
+</html>

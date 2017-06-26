@@ -51,13 +51,15 @@ function parseQueryStr( queryStr ) {
 
 //获取用户
 exports.getUser = async (ctx, next) => {
-
-	let dataList = await setData()
-	
-    ctx.body = {
-        username: dataList,
-        age: 30
+	console.log(1)
+    console.log(ctx.query.username)
+    ctx.session = {
+        userId: Math.random().toString(36).substr(2),
+        userName :ctx.query.username
     }
+	let dataList = await setData()
+
+    ctx.redirect('/chat')
 }
 
 
