@@ -1,4 +1,14 @@
 
+
+
+.blank {
+    height: 50px;
+}
+
+.chatBox {
+    background-color: #eee;
+}
+
 .chatBox .msgItem {
     padding: 10px 15px;
 }
@@ -96,4 +106,43 @@
     padding: 5px 15px;
     margin: 0 15px;
     margin-top: 5px;
+}
+
+
+.inputBox {
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:50px;
+    display: flex;
+    align-items: center;
+    background-color: #dedede;
+    padding:5px;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.inputBox textarea {
+    flex:1;
+    height:30px;
+    border-radius:3px;
+}
+
+
+.inputBox .btnBox {
+    width:70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:30px;
+
+}
+
+.inputBox .btnBox button {
+    background-color: #2ad216;
+    width:50px;
+    height:25px;
+    border-radius: 5px;
+    border:1px solid #2ad216;
 }

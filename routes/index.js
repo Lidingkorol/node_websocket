@@ -8,13 +8,11 @@ router.get('/', async (ctx, next) => {
 
 router.get('/chat', async (ctx, next) => {
     console.log('userId')
-    console.log(ctx.session.userName)
-    if(!ctx.session.userName) {
+    console.log(ctx.cookies.get('userName'))
+    if(!ctx.cookies.get('userName')) {
         ctx.redirect('/')
     }
-    await ctx.render('socket', {
-        title: 'Hello Koa 2!'
-    })
+    await ctx.render('socket')
 })
 
 module.exports = router

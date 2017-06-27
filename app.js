@@ -18,7 +18,6 @@ const chat = require('./socketio/socket')
 
 const server = require('http').createServer(app.callback());
 
-//const chat = require('./socketio/index')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -41,10 +40,10 @@ app.use(views(__dirname + '/views', {
 ))
 
 // 使用session中间件
-app.use(session({
+/*app.use(session({
     key: 'SESSION_ID',
     store: new MysqlStore(store)
-}))
+}))*/
 
 
 // logger

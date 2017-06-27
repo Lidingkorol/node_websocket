@@ -8,13 +8,15 @@
 	</head>
 	<body>
 		<div class="container">
-			<form id="form" onsubmit="sendMsg(); return false;">
-				<textarea></textarea>
-				<button>提交</button>
+			<form class="inputBox" id="form" onsubmit="sendMsg(); return false;">
+				<textarea placeholder=""></textarea>
+                <div class="btnBox">
+                    <button>提交</button>
+                </div>
 			</form>
 			<div class="chatBox" id="chatBox">
-				
 			</div>
+            <div class="blank"></div>
 		</div>
 	</body>
 	
@@ -47,8 +49,8 @@
         	if(msg.type!=='talk'){
         		return;
         	}
-        	
-        	if(msg.fromUser===localStorage.user){
+        	console.log(msg.fromUser)
+        	if(msg.fromUser===localStorage.userName){
         		var html =   '<div class="msgItem">'
         				+	'<div class="msgRight">'
         				+		'<img src="'+msg.imgUrl+'">'
@@ -73,6 +75,7 @@
         		
         		$('#chatBox').append(html)
         	}
+            goBottom();
         	console.log(msg)
         })
         
@@ -80,12 +83,12 @@
         	var tips;
         	console.log(msg)
         	switch(msg.type){
-        		case 'login': 
-        			tips = '进入了聊天室~';break;	
+        		case 'login':
+        			tips = '进入了聊天室~';break;
 
-        		case 'leave': 
+        		case 'leave':
         			tips = '离开了聊天室！';break;
-        		default : 
+        		default :
         			tips = '';break;
         	}
         	var html =   '<div class="msgItem">'
@@ -101,37 +104,16 @@
         
         function sendMsg() {
         	var msg = $('#form textarea').val();
-        	
-        	msgData.fromUser = localStorage.user;
-        	msgData.content = msg;
-        	msgData.type = 'talk';
-        	socket.emit('talkMsg',msgData);
+        	socket.emit('talkMsg',msg);
+        }
+
+
+        function goBottom() {
+            $(window).scrollTop($(document).height());
         }
         
         
-        
-        function openPage() {
-        	layer.prompt({
-        		title:"请输输入聊天昵称！",
-        		formtype:0,
-        		value:"",
-        		closeBtn:false,
-        		btn:['确定']
-        	},function(value,success){
-        		
-        		layer.close(success)
-        		
-        		msgData.nickName = value;
-        		
-        		msgData.type = 'login';
-        		
-        		localStorage.user = value; 
-        		
-        		socket.emit('sysMsg',msgData)
-        	})
-        }
-        
-        openPage();
+
         
        	
     </script>

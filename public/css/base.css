@@ -9,6 +9,11 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 100%
 }
 
+html,body {
+    height:100%;
+    background-color: #eee;
+}
+
 form {
     display: block
 }
@@ -99,6 +104,6 @@ html, body {
 
 
 .container {
-	background-color:#dedede;
+	background-color:#eee;
 	height: 100%;
 }
