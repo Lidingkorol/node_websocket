@@ -2,9 +2,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>聊天室</title>
 		<link href="/css/base.css" rel="stylesheet" type="text/css">
 		<link href="/css/socket.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -14,6 +15,13 @@
                     <button>提交</button>
                 </div>
 			</form>
+            <div class="userBox" id="userBox">
+                <a href="/chat/room/123"><i class="fa fa-user-plus" style="color:#2ad216;font-size: 30px;"></i></a>
+                <a href="/chat/room/{{roomId}}"><i class="fa fa-user" style="color:#2ad216;font-size: 30px;"></i></a>
+
+
+
+            </div>
 			<div class="chatBox" id="chatBox">
 			</div>
             <div class="blank"></div>
@@ -42,8 +50,13 @@
         	fromUser:'',
         	toUser:''
         }
-        
-        
+
+        socket.on('connect',function() {
+            socket.emit('join', function (msg) {
+            })
+        })
+
+
         socket.on('emit-talkMsg',function(msg){
         	
         	if(msg.type!=='talk'){
@@ -111,9 +124,10 @@
         function goBottom() {
             $(window).scrollTop($(document).height());
         }
-        
-        
 
+        /*$('#userBox').on('click',function(){
+            layer.open()
+        })*/
         
        	
     </script>

@@ -146,3 +146,21 @@
     border-radius: 5px;
     border:1px solid #2ad216;
 }
+
+
+
+.userBox {
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+    position: fixed;
+    bottom:60px;
+    left:15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    z-index: 999;
+
+
+}

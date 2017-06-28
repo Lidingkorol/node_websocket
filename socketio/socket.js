@@ -14,6 +14,12 @@ var chat={
 var roomList=[]
 
 
+function creatObj(master,list) {
+	var o = new Object();
+	o.master = master;
+	o.list = list;
+	return o;
+}
 
 function skChat(vm,target,emitTarget,data) {
 	socket.on(target,function(data){
@@ -47,6 +53,13 @@ chat.init = function(server){
 chat.run = function(){
 	var that = this;
 	this.io.on('connection',function(socket){
+		//let asd=[]
+		//let url = socket.handshake.headers.referer;
+        //let splited = url.split('/');
+        //that.roomID = splited[splited.length - 1];   // 获取房间ID
+		//roomList.push(creatObj(roomID,asd))
+		//console.log(roomList)
+
 
         that.comeIn(socket);
 		
@@ -58,6 +71,9 @@ chat.run = function(){
 }
 
 
+
+
+
 chat.getMsg = function(socket){
 	var that = this;
 	
@@ -65,7 +81,10 @@ chat.getMsg = function(socket){
 	socket.on('talkMsg',function(data){
         that.cookie = setCookie(this.handshake.headers.cookie)
         that.userName = that.cookie.userName
-		console.log(data)
+        let url = socket.handshake.headers.referer;
+        let splited = url.split('/');
+        let roomID = splited[splited.length - 1];   // 获取房间ID
+		console.log(this.handshake.headers.referer)
         let msgData  = {
             fromUser : that.userName,
             nickName : that.userName,
@@ -73,8 +92,7 @@ chat.getMsg = function(socket){
             type : 'talk',
             content : data
         }
-        console.log(msgData)
-		that.io.emit('emit-talkMsg',msgData)
+		that.io.to(roomID).emit('emit-talkMsg',msgData)
 	})
 	
 	
@@ -82,24 +100,30 @@ chat.getMsg = function(socket){
 
 chat.comeIn = function(socket){
 	var that = this;
+    let url = socket.handshake.headers.referer;
+    let splited = url.split('/');
+    let roomID = splited[splited.length - 1];   // 获取房间ID
+	socket.join(roomID)
     this.cookie = setCookie(socket.handshake.headers.cookie)
-    this.userName = that.cookie.userName
-	let msgData  = {
-		fromUser : this.userName,
+    this.userName = this.cookie.userName
+
+    let msgData  = {
+        fromUser : this.userName,
         nickName : this.userName,
         toUser : '',
         type : 'login',
-		content : ''
-	}
-	this.io.emit('emit-sysMsg',msgData);
-
-	
+        content : ''
+    }
+    this.io.to(roomID).emit('emit-sysMsg',msgData);
 }
 
 
 chat.leave = function(socket){
 	var that = this;
 	socket.on('disconnect',function(){
+        let url = this.handshake.headers.referer;
+        let splited = url.split('/');
+        let roomID = splited[splited.length - 1];   // 获取房间ID
         that.cookie = setCookie(this.handshake.headers.cookie)
         that.userName = that.cookie.userName
         let msgData  = {
@@ -111,7 +135,7 @@ chat.leave = function(socket){
         }
 		console.log('离开')
 		console.log(msgData)
-		that.io.emit('emit-sysMsg',msgData)
+		that.io.to(roomID).emit('emit-sysMsg',msgData)
 	})
 	
 }
