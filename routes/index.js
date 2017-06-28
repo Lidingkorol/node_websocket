@@ -12,8 +12,7 @@ router.get('/chat', async (ctx, next) => {
     if(!ctx.cookies.get('userName')||ctx.cookies.get('userName')=='undefined') {
         ctx.redirect('/')
     }else {
-        let roomId = ctx.cookies.get('userName')+parseInt(1000*Math.random())
-        ctx.redirect('/chat/room/'+roomId)
+        ctx.redirect('/chat/room/'+ctx.cookies.get('roomId'))
     }
 })
 
@@ -23,12 +22,8 @@ router.get('/chat/room/:roomId',async(ctx,next)=> {
     }else {
         console.log(ctx.url)
         console.log(ctx.params)
-        if(!ctx.cookies.get('roomId')) {
-            ctx.cookies.set()
-            var roomId = ctx.params.roomId
-        }
         await ctx.render('socket',{
-            roomId : roomId
+            roomId : ctx.cookies.get('roomId')
         })
     }
 

@@ -69,7 +69,19 @@ exports.getUser = async (ctx, next) => {
             overwrite: false  // 是否允许重写
         }
 	)
-	let dataList = await setData()
+    ctx.cookies.set(
+        'roomId',
+        ctx.query.username+parseInt(1000*Math.random()),
+        {
+            domain: 'localhost',  // 写cookie所在的域名
+            path: '/',       // 写cookie所在的路径
+            maxAge: 10 * 60 * 1000, // cookie有效时长
+            expires: new Date('2017-7-15'),  // cookie失效时间
+            httpOnly: true,  // 是否只用于http请求中获取
+            overwrite: false  // 是否允许重写
+        }
+    )
+	//let dataList = await setData()
 
     ctx.redirect('/chat')
 }
