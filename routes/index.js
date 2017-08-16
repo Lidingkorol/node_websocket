@@ -13,6 +13,8 @@ router.get('/chat', async (ctx, next) => {
 
 router.get('/chat/room/:roomId',async(ctx,next)=> {
     if(!ctx.cookies.get('userName')||ctx.cookies.get('userName')=='undefined'||!ctx.cookies.get('roomId')) {
+
+
         ctx.redirect('/')
     }else {
         console.log(ctx.url)
